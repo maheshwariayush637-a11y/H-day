@@ -4,14 +4,14 @@
     box-sizing: border-box;
 }
 
-Body {
+body {
     font-family: 'Nunito', sans-serif;
     min-height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
     overflow: hidden;
-    background: linear-gradient(to right, #a1c4fd, #c2e9fb);
+    background: linear-gradient(to right, #fbc2eb, #a6c1ee);
 }
 
 /* Floating hearts background */
