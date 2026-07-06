@@ -11,12 +11,11 @@ const gifStages = [
 
 const noMessages = [
     "No",
-    "Are you positive? 🤔",
-    "Please...Na 🥺",
-    "Yes pai Click kr deh na...",
-    "Chimpdi...kr bhi deh yes... 😢",
+    "Are you Sureee? 🤔",
+    "Pleaseee..Na 🥺",
+    "Yes pai Click kr bhi deh ab..",
+    "Chimpdi...kahinki... 😢",
     "Please??? 💔",
-    "Don't do this to me...",
     "Last chance! 😭",
     "You can't catch me anyway 😜"
 ]
