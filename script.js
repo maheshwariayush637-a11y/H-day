@@ -14,7 +14,7 @@ const noMessages = [
     "Are you positive? 🤔",
     "Please...Na 🥺",
     "Yes pai Click kr deh na...",
-    "Chimpdi... kr bhi deh yes... 😢",
+    "Chimpdi...kr bhi deh yes... 😢",
     "Please??? 💔",
     "Don't do this to me...",
     "Last chance! 😭",
