@@ -142,3 +142,56 @@ function runAway() {
     noBtn.style.top = `${randomY}px`
     noBtn.style.zIndex = '50'
 }
+
+/* ===========================
+   RANDOM SHOOTING STARS
+=========================== */
+
+const shootingStars = document.getElementById("shooting-stars");
+
+function createShootingStar() {
+
+    if (!shootingStars) return;
+
+    const star = document.createElement("div");
+
+    star.className = "shooting-star";
+
+    star.style.width = (Math.random() * 120 + 120) + "px";
+
+    star.style.left = "-250px";
+
+    star.style.top = (Math.random() * window.innerHeight) + "px";
+
+    shootingStars.appendChild(star);
+
+    const duration = Math.random() * 1200 + 1800;
+
+    star.animate(
+        [
+            {
+                transform: "translate(0px,0px) rotate(-35deg)",
+                opacity: 0
+            },
+            {
+                opacity: 1,
+                offset: 0.1
+            },
+            {
+                transform: `translate(${window.innerWidth + 500}px,600px) rotate(-35deg)`,
+                opacity: 0
+            }
+        ],
+        {
+            duration: duration,
+            easing: "linear"
+        }
+    );
+
+    setTimeout(() => {
+        star.remove();
+    }, duration);
+
+}
+
+setInterval(createShootingStar, 1800);
