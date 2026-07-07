@@ -188,142 +188,6 @@ opacity:1;
 }
 
 }
-/* ==========================================
-   SHOOTING STARS
-========================================== */
-
-.shooting-star{
-
-    position:fixed;
-
-    width:220px;
-    height:2px;
-
-    background:linear-gradient(
-        90deg,
-        rgba(255,255,255,1),
-        rgba(255,255,255,.6),
-        transparent
-    );
-
-    border-radius:999px;
-
-    filter:
-        drop-shadow(0 0 6px white)
-        drop-shadow(0 0 14px white);
-
-    transform:rotate(-35deg);
-
-    opacity:0;
-
-    pointer-events:none;
-
-    z-index:2;
-}
-
-.star1{
-
-    top:8%;
-    left:-20%;
-
-    animation:shoot1 8s linear infinite;
-
-}
-
-.star2{
-
-    top:35%;
-    left:-30%;
-
-    animation:shoot2 11s linear infinite;
-
-    animation-delay:2s;
-
-}
-
-.star3{
-
-    top:70%;
-    left:-25%;
-
-    animation:shoot3 13s linear infinite;
-
-    animation-delay:4s;
-
-}
-
-@keyframes shoot1{
-
-0%{
-
-transform:translateX(0) translateY(0) rotate(-35deg);
-opacity:0;
-
-}
-
-5%{
-
-opacity:1;
-
-}
-
-100%{
-
-transform:translateX(1800px) translateY(900px) rotate(-35deg);
-opacity:0;
-
-}
-
-}
-
-@keyframes shoot2{
-
-0%{
-
-transform:translateX(0) translateY(0) rotate(-35deg);
-opacity:0;
-
-}
-
-5%{
-
-opacity:1;
-
-}
-
-100%{
-
-transform:translateX(1900px) translateY(1000px) rotate(-35deg);
-opacity:0;
-
-}
-
-}
-
-@keyframes shoot3{
-
-0%{
-
-transform:translateX(0) translateY(0) rotate(-35deg);
-opacity:0;
-
-}
-
-5%{
-
-opacity:1;
-
-}
-
-100%{
-
-transform:translateX(1700px) translateY(850px) rotate(-35deg);
-opacity:0;
-
-}
-
-}
-
 
 /* ==========================================
    FLOATING EMOJIS
@@ -1099,4 +963,28 @@ body{
 
 cursor:default;
 
+}
+
+/* ==========================================
+   RANDOM SHOOTING STARS
+========================================== */
+
+#shooting-stars{
+    position:fixed;
+    inset:0;
+    overflow:hidden;
+    pointer-events:none;
+    z-index:2;
+}
+
+.shooting-star{
+    position:absolute;
+    height:2px;
+    background:linear-gradient(to right,#ffffff,rgba(255,255,255,.6),transparent);
+    border-radius:999px;
+    box-shadow:
+        0 0 8px #ffffff,
+        0 0 20px #ffffff;
+    transform:rotate(-35deg);
+    opacity:0;
 }
