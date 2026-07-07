@@ -13,35 +13,59 @@ body {
     justify-content: center;
     align-items: center;
     position: relative;
-    /* Dreamy pink-blue gradient base matching your image */
-    background: linear-gradient(135deg, #fbc2eb 0%, #a6c1ee 100%); 
+    /* Dreamy pink-to-blue diagonal gradient matching your image perfectly */
+    background: linear-gradient(135deg, #fbc2eb 0%, #a6c1ee 100%) !important; 
     overflow: hidden;
 }
 
-/* Beautiful Bokeh Lights / Large Soft Glowing Spheres */
+/* Starry Sky Overlay (Tiny Twinkling Stars & Subtle Soft Glows) */
+body::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-image: 
+        /* Tiny bright stars */
+        radial-gradient(circle at 15% 20%, #ffffff 1px, transparent 1px),
+        radial-gradient(circle at 45% 40%, #ffffff 1.5px, transparent 1.5px),
+        radial-gradient(circle at 75% 15%, #ffffff 1px, transparent 1px),
+        radial-gradient(circle at 85% 65%, #ffffff 2px, transparent 2px),
+        radial-gradient(circle at 25% 75%, #ffffff 1.5px, transparent 1.5px),
+        radial-gradient(circle at 60% 85%, #ffffff 1px, transparent 1px),
+        /* Soft ambient light leaks from your reference image */
+        radial-gradient(circle at 90% 10%, rgba(255, 255, 255, 0.4) 0%, transparent 40%),
+        radial-gradient(circle at 10% 80%, rgba(255, 255, 255, 0.2) 0%, transparent 35%);
+    background-size: 100% 100%;
+    mix-blend-mode: overlay;
+    pointer-events: none;
+    animation: twinkle 4s ease-in-out infinite alternate;
+}
+
+/* Shooting Stars / Falling Light Streaks Overlay */
 body::after {
     content: "";
     position: absolute;
-    top: 0; 
-    left: 0; 
-    right: 0; 
-    bottom: 0;
-    /* Creates large, blurry, dreamy light balls that blend into the pink/blue background */
+    top: -50%; left: -50%; right: -50%; bottom: -50%;
+    /* Creates the diagonal white dashed light streaks from your image */
     background-image: 
-        radial-gradient(circle at 20% 30%, rgba(255, 255, 255, 0.3) 0%, transparent 50%),
-        radial-gradient(circle at 75% 40%, rgba(255, 255, 255, 0.25) 0%, transparent 45%),
-        radial-gradient(circle at 40% 70%, rgba(255, 255, 255, 0.22) 0%, transparent 50%),
-        radial-gradient(circle at 85% 85%, rgba(255, 255, 255, 0.18) 0%, transparent 40%);
-    background-size: 100% 100%;
+        linear-gradient(115deg, transparent 40%, rgba(255, 255, 255, 0.4) 41%, rgba(255, 255, 255, 0.4) 43%, transparent 44%),
+        linear-gradient(115deg, transparent 70%, rgba(255, 255, 255, 0.3) 71%, rgba(255, 255, 255, 0.3) 72%, transparent 73%);
+    background-size: 300px 300px;
     mix-blend-mode: screen;
     pointer-events: none;
-    animation: bokehMove 15s ease-in-out infinite alternate;
-    opacity: 0.9;
+    /* Moves diagonally down and left to mimic falling stars */
+    animation: shootingStars 8s linear infinite;
+    opacity: 0.6;
 }
 
-@keyframes bokehMove {
-    from { transform: scale(1) translate(0, 0); }
-    to { transform: scale(1.08) translate(-15px, 15px); }
+/* Animations for Stars */
+@keyframes twinkle {
+    from { opacity: 0.6; }
+    to { opacity: 1; }
+}
+
+@keyframes shootingStars {
+    from { transform: translate(0, 0); }
+    to { transform: translate(-150px, 300px); }
 }
 
 /* Minimalist 4-Corner Emojis Frame with floating animation */
@@ -57,7 +81,7 @@ body::after {
     content: '🐣\n🧿\n⚰️\n🥂\n🔪';
     position: absolute;
     font-size: 1.4rem;
-    opacity: 0.4;
+    opacity: 0.5;
     white-space: pre;
     line-height: 2.8;
     top: 40px;
@@ -70,17 +94,17 @@ body::after {
     content: '🧿\n🥂\n🔪\n🐣\n⚰️';
     position: absolute;
     font-size: 1.4rem;
-    opacity: 0.4;
+    opacity: 0.5;
     white-space: pre;
     line-height: 2.8;
     top: 40px;
     right: 40px;
     text-align: right;
     animation: gentleFloat 6s ease-in-out infinite alternate;
-    animation-delay: -3s; /* Desynchronizes the sides so it looks natural */
+    animation-delay: -3s; 
 }
 
-/* The smooth, gentle wave floating animation */
+/* The smooth, gentle wave floating animation for the emojis */
 @keyframes gentleFloat {
     from { transform: translateY(0px) rotate(0deg); }
     to { transform: translateY(-15px) rotate(2deg); }
