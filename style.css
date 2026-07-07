@@ -1,292 +1,1102 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap');
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+/* =========================
+   RESET
+========================= */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
 }
 
-body {
-    font-family: 'Montserrat', sans-serif;
-    min-height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: relative;
-    /* Dreamy pink-to-blue diagonal gradient matching your image perfectly */
-    background: linear-gradient(135deg, #fbc2eb 0%, #a6c1ee 100%) !important; 
-    overflow: hidden;
+html,
+body{
+    width:100%;
+    height:100%;
 }
 
-/* Starry Sky Overlay (Tiny Twinkling Stars & Subtle Soft Glows) */
-body::before {
-    content: "";
-    position: absolute;
-    top: 0; left: 0; right: 0; bottom: 0;
-    background-image: 
-        /* Tiny bright stars */
-        radial-gradient(circle at 15% 20%, #ffffff 1px, transparent 1px),
-        radial-gradient(circle at 45% 40%, #ffffff 1.5px, transparent 1.5px),
-        radial-gradient(circle at 75% 15%, #ffffff 1px, transparent 1px),
-        radial-gradient(circle at 85% 65%, #ffffff 2px, transparent 2px),
-        radial-gradient(circle at 25% 75%, #ffffff 1.5px, transparent 1.5px),
-        radial-gradient(circle at 60% 85%, #ffffff 1px, transparent 1px),
-        /* Soft ambient light leaks from your reference image */
-        radial-gradient(circle at 90% 10%, rgba(255, 255, 255, 0.4) 0%, transparent 40%),
-        radial-gradient(circle at 10% 80%, rgba(255, 255, 255, 0.2) 0%, transparent 35%);
-    background-size: 100% 100%;
-    mix-blend-mode: overlay;
-    pointer-events: none;
-    animation: twinkle 4s ease-in-out infinite alternate;
+body{
+
+    font-family:'Montserrat',sans-serif;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    min-height:100vh;
+
+    overflow:hidden;
+
+    position:relative;
+
+    background:linear-gradient(
+        -45deg,
+        #ffd6ea,
+        #f7c8ff,
+        #d7d5ff,
+        #bde9ff,
+        #ffd6ea
+    );
+
+    background-size:500% 500%;
+
+    animation:gradientFlow 20s ease infinite;
+
 }
 
-/* Shooting Stars / Falling Light Streaks Overlay */
-body::after {
-    content: "";
-    position: absolute;
-    top: -50%; left: -50%; right: -50%; bottom: -50%;
-    /* Creates the diagonal white dashed light streaks from your image */
-    background-image: 
-        linear-gradient(115deg, transparent 40%, rgba(255, 255, 255, 0.4) 41%, rgba(255, 255, 255, 0.4) 43%, transparent 44%),
-        linear-gradient(115deg, transparent 70%, rgba(255, 255, 255, 0.3) 71%, rgba(255, 255, 255, 0.3) 72%, transparent 73%);
-    background-size: 300px 300px;
-    mix-blend-mode: screen;
-    pointer-events: none;
-    /* Moves diagonally down and left to mimic falling stars */
-    animation: shootingStars 8s linear infinite;
-    opacity: 0.6;
+/* =========================
+   ANIMATED GRADIENT
+========================= */
+
+@keyframes gradientFlow{
+
+0%{
+
+background-position:0% 50%;
+
 }
 
-/* Animations for Stars */
-@keyframes twinkle {
-    from { opacity: 0.6; }
-    to { opacity: 1; }
+50%{
+
+background-position:100% 50%;
+
 }
 
-@keyframes shootingStars {
-    from { transform: translate(0, 0); }
-    to { transform: translate(-150px, 300px); }
+100%{
+
+background-position:0% 50%;
+
 }
 
-/* Minimalist 4-Corner Emojis Frame with floating animation */
-.hearts-bg {
-    position: fixed;
-    top: 0; left: 0; right: 0; bottom: 0;
-    pointer-events: none;
-    z-index: 0;
 }
 
-/* Left Column Emojis (Top & Bottom Left Corners) */
-.hearts-bg::before {
-    content: '🐣\n🧿\n⚰️\n🥂\n🔪';
-    position: absolute;
-    font-size: 1.4rem;
-    opacity: 0.5;
-    white-space: pre;
-    line-height: 2.8;
-    top: 40px;
-    left: 40px;
-    animation: gentleFloat 6s ease-in-out infinite alternate;
+
+/* =========================
+   SOFT GLOW
+========================= */
+
+body::before{
+
+content:"";
+
+position:absolute;
+
+inset:0;
+
+background:
+
+radial-gradient(circle at 15% 20%,rgba(255,255,255,.45),transparent 35%),
+
+radial-gradient(circle at 80% 15%,rgba(255,255,255,.25),transparent 30%),
+
+radial-gradient(circle at 50% 75%,rgba(255,255,255,.18),transparent 40%),
+
+radial-gradient(circle at 90% 85%,rgba(255,255,255,.18),transparent 30%),
+
+radial-gradient(circle at 10% 90%,rgba(255,255,255,.15),transparent 35%);
+
+animation:glowMove 15s ease-in-out infinite alternate;
+
+pointer-events:none;
+
+z-index:0;
+
 }
 
-/* Right Column Emojis (Top & Bottom Right Corners) */
-.hearts-bg::after {
-    content: '🧿\n🥂\n🔪\n🐣\n⚰️';
-    position: absolute;
-    font-size: 1.4rem;
-    opacity: 0.5;
-    white-space: pre;
-    line-height: 2.8;
-    top: 40px;
-    right: 40px;
-    text-align: right;
-    animation: gentleFloat 6s ease-in-out infinite alternate;
-    animation-delay: -3s; 
+@keyframes glowMove{
+
+from{
+
+transform:translateY(-20px);
+
 }
 
-/* The smooth, gentle wave floating animation for the emojis */
-@keyframes gentleFloat {
-    from { transform: translateY(0px) rotate(0deg); }
-    to { transform: translateY(-15px) rotate(2deg); }
+to{
+
+transform:translateY(20px);
+
 }
 
-.container {
-    position: relative;
-    z-index: 1;
-    text-align: center;
-    padding: 40px 20px;
 }
 
-h1 {
-    font-size: 2.4rem;
-    color: #ffffff;
-    font-weight: 900;
-    margin-bottom: 20px;
-    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.15);
-    animation: wiggle 2s ease-in-out infinite;
+
+/* =========================
+   TINY STARS
+========================= */
+
+body::after{
+
+content:"";
+
+position:absolute;
+
+inset:0;
+
+background-image:
+
+radial-gradient(circle,#fff 1px,transparent 1px),
+
+radial-gradient(circle,#fff 2px,transparent 2px),
+
+radial-gradient(circle,#fff 1.5px,transparent 1.5px),
+
+radial-gradient(circle,#fff 1px,transparent 1px);
+
+background-size:
+
+120px 120px,
+
+200px 200px,
+
+260px 260px,
+
+320px 320px;
+
+background-position:
+
+10px 20px,
+
+60px 100px,
+
+120px 150px,
+
+200px 250px;
+
+opacity:.75;
+
+animation:twinkle 3s ease-in-out infinite alternate;
+
+pointer-events:none;
+
+z-index:1;
+
 }
 
-@keyframes wiggle {
-    0%, 100% { transform: rotate(-1deg); }
-    50% { transform: rotate(1deg); }
+@keyframes twinkle{
+
+0%{
+
+opacity:.35;
+
 }
 
-.gif-container {
-    margin: 20px auto;
-    display: flex;
-    justify-content: center;
+100%{
+
+opacity:1;
+
 }
 
-#cat-gif {
-    width: 200px;
-    height: 200px;
-    object-fit: contain;
-    filter: drop-shadow(0 8px 16px rgba(0,0,0,0.15));
-    transition: opacity 0.3s ease;
+}
+/* ==========================================
+   SHOOTING STARS
+========================================== */
+
+.shooting-star{
+
+    position:fixed;
+
+    width:220px;
+    height:2px;
+
+    background:linear-gradient(
+        90deg,
+        rgba(255,255,255,1),
+        rgba(255,255,255,.6),
+        transparent
+    );
+
+    border-radius:999px;
+
+    filter:
+        drop-shadow(0 0 6px white)
+        drop-shadow(0 0 14px white);
+
+    transform:rotate(-35deg);
+
+    opacity:0;
+
+    pointer-events:none;
+
+    z-index:2;
 }
 
-.buttons {
-    display: flex;
-    gap: 20px;
-    justify-content: center;
-    align-items: center;
-    margin-top: 30px;
-    flex-wrap: wrap;
+.star1{
+
+    top:8%;
+    left:-20%;
+
+    animation:shoot1 8s linear infinite;
+
 }
 
-#yes-btn {
-    background: linear-gradient(135deg, #FF6B8B, #FF8EAA);
-    color: white;
-    border: none;
-    border-radius: 16px;
-    font-size: 1.6rem;
-    font-weight: 900;
-    padding: 18px 45px;
-    cursor: pointer;
-    transition: transform 0.15s, box-shadow 0.15s;
-    box-shadow: 0 6px 20px rgba(255, 107, 139, 0.4);
-    letter-spacing: 1px;
+.star2{
+
+    top:35%;
+    left:-30%;
+
+    animation:shoot2 11s linear infinite;
+
+    animation-delay:2s;
+
 }
 
-#yes-btn:hover {
-    transform: scale(1.06) translateY(-2px);
-    box-shadow: 0 10px 28px rgba(255, 107, 139, 0.5);
+.star3{
+
+    top:70%;
+    left:-25%;
+
+    animation:shoot3 13s linear infinite;
+
+    animation-delay:4s;
+
 }
 
-#yes-btn:active {
-    transform: scale(0.98);
+@keyframes shoot1{
+
+0%{
+
+transform:translateX(0) translateY(0) rotate(-35deg);
+opacity:0;
+
 }
 
-#no-btn {
-    background: rgba(255, 255, 255, 0.3);
-    color: #4a4a4a;
-    border: 1px solid rgba(255, 255, 255, 0.5);
-    border-radius: 12px;
-    font-size: 1rem;
-    font-weight: 700;
-    padding: 12px 28px;
-    cursor: pointer;
-    backdrop-filter: blur(5px);
-    transition: background 0.2s, left 0.25s ease, top 0.25s ease;
-    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.05);
+5%{
+
+opacity:1;
+
 }
 
-#no-btn:hover {
-    background: rgba(255, 255, 255, 0.5);
+100%{
+
+transform:translateX(1800px) translateY(900px) rotate(-35deg);
+opacity:0;
+
 }
 
-#tease-toast {
-    margin-top: 14px;
-    font-size: 1rem;
-    color: #ffffff;
-    font-weight: 700;
-    font-style: italic;
-    opacity: 0;
-    transform: translateY(6px);
-    transition: opacity 0.3s ease, transform 0.3s ease;
-    min-height: 1.5rem;
-    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.1);
 }
 
-#tease-toast.show {
-    opacity: 1;
-    transform: translateY(0);
+@keyframes shoot2{
+
+0%{
+
+transform:translateX(0) translateY(0) rotate(-35deg);
+opacity:0;
+
 }
 
-/* Music toggle button */
-#music-toggle {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    background: rgba(255, 255, 255, 0.85);
-    border: none;
-    border-radius: 50%;
-    width: 52px;
-    height: 52px;
-    font-size: 1.4rem;
-    cursor: pointer;
-    backdrop-filter: blur(10px);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
-    transition: transform 0.2s;
-    z-index: 100;
+5%{
+
+opacity:1;
+
 }
 
-#music-toggle:hover {
-    transform: scale(1.1);
+100%{
+
+transform:translateX(1900px) translateY(1000px) rotate(-35deg);
+opacity:0;
+
 }
 
-/* Yes page specific styles */
-.yes-container h1.yes-title {
-    font-size: 2.8rem;
-    animation: bounceTitle 0.6s ease infinite alternate;
 }
 
-@keyframes bounceTitle {
-    from { transform: translateY(0) rotate(-1deg); }
-    to { transform: translateY(-12px) rotate(1deg); }
+@keyframes shoot3{
+
+0%{
+
+transform:translateX(0) translateY(0) rotate(-35deg);
+opacity:0;
+
 }
 
-.yes-message {
-    font-size: 1.4rem;
-    color: #ffffff;
-    font-weight: 700;
-    margin-top: 24px;
-    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.1);
-    animation: fadeIn 1s ease 0.5s both;
+5%{
+
+opacity:1;
+
 }
 
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(10px); }
-    to { opacity: 1; transform: translateY(0); }
+100%{
+
+transform:translateX(1700px) translateY(850px) rotate(-35deg);
+opacity:0;
+
 }
 
-.yes-container #cat-gif {
-    width: 260px;
 }
 
-/* Smart Responsive Adjustments for Mobile Viewports */
-@media (max-width: 600px) {
-    .hearts-bg::before {
-        left: 15px;
-        top: 20px;
-        font-size: 1.1rem;
-        line-height: 2.4;
+
+/* ==========================================
+   FLOATING EMOJIS
+========================================== */
+
+.hearts-bg{
+
+    position:fixed;
+
+    inset:0;
+
+    overflow:hidden;
+
+    pointer-events:none;
+
+    z-index:1;
+
+}
+
+/* LEFT */
+
+.hearts-bg::before{
+
+content:
+
+"🐣   🧿   🥂\A\A🔪    ⚰️    🐣\A\A🧿     🥂\A\A⚰️     🔪";
+
+white-space:pre;
+
+position:absolute;
+
+left:6%;
+
+top:8%;
+
+font-size:2rem;
+
+line-height:90px;
+
+opacity:.28;
+
+animation:floatLeft 14s ease-in-out infinite alternate;
+
+filter:blur(.2px);
+
+}
+
+/* RIGHT */
+
+.hearts-bg::after{
+
+content:
+
+"🥂     🧿\A\A🐣      ⚰️\A\A🔪      🥂\A\A🧿      🐣";
+
+white-space:pre;
+
+position:absolute;
+
+right:6%;
+
+top:12%;
+
+text-align:right;
+
+font-size:2rem;
+
+line-height:90px;
+
+opacity:.28;
+
+animation:floatRight 16s ease-in-out infinite alternate;
+
+animation-delay:-5s;
+
+filter:blur(.2px);
+
+}
+
+@keyframes floatLeft{
+
+0%{
+
+transform:
+translateY(0)
+translateX(0)
+rotate(-3deg);
+
+}
+
+25%{
+
+transform:
+translateY(-40px)
+translateX(25px)
+rotate(2deg);
+
+}
+
+50%{
+
+transform:
+translateY(30px)
+translateX(-20px)
+rotate(-2deg);
+
+}
+
+75%{
+
+transform:
+translateY(-25px)
+translateX(18px)
+rotate(2deg);
+
+}
+
+100%{
+
+transform:
+translateY(20px)
+translateX(-15px)
+rotate(-3deg);
+
+}
+
+}
+
+@keyframes floatRight{
+
+0%{
+
+transform:
+translateY(0)
+translateX(0)
+rotate(3deg);
+
+}
+
+25%{
+
+transform:
+translateY(35px)
+translateX(-25px)
+rotate(-2deg);
+
+}
+
+50%{
+
+transform:
+translateY(-25px)
+translateX(18px)
+rotate(2deg);
+
+}
+
+75%{
+
+transform:
+translateY(30px)
+translateX(-20px)
+rotate(-2deg);
+
+}
+
+100%{
+
+transform:
+translateY(-20px)
+translateX(15px)
+rotate(3deg);
+
+}
+
+}
+/* ==========================================
+   MAIN CONTAINER
+========================================== */
+
+.container{
+
+    position:relative;
+
+    z-index:10;
+
+    text-align:center;
+
+    width:min(90%,650px);
+
+    padding:45px 35px;
+
+    border-radius:35px;
+
+    background:rgba(255,255,255,.12);
+
+    backdrop-filter:blur(18px);
+
+    -webkit-backdrop-filter:blur(18px);
+
+    border:1px solid rgba(255,255,255,.22);
+
+    box-shadow:
+    0 10px 45px rgba(0,0,0,.08),
+    inset 0 0 20px rgba(255,255,255,.08);
+
+    animation:containerFloat 6s ease-in-out infinite alternate;
+
+}
+
+@keyframes containerFloat{
+
+from{
+
+transform:translateY(0px);
+
+}
+
+to{
+
+transform:translateY(-8px);
+
+}
+
+}
+
+
+/* ==========================================
+   TITLE
+========================================== */
+
+h1{
+
+    font-size:2.7rem;
+
+    font-weight:900;
+
+    color:white;
+
+    margin-bottom:28px;
+
+    text-shadow:
+
+    0 4px 15px rgba(0,0,0,.15);
+
+    line-height:1.3;
+
+    animation:titleBounce 3s ease-in-out infinite;
+
+}
+
+@keyframes titleBounce{
+
+0%{
+
+transform:translateY(0);
+
+}
+
+50%{
+
+transform:translateY(-5px);
+
+}
+
+100%{
+
+transform:translateY(0);
+
+}
+
+}
+
+
+/* ==========================================
+   GIF
+========================================== */
+
+.gif-container{
+
+display:flex;
+
+justify-content:center;
+
+align-items:center;
+
+margin:25px 0;
+
+}
+
+#cat-gif{
+
+width:240px;
+
+height:240px;
+
+object-fit:contain;
+
+filter:
+
+drop-shadow(0 10px 20px rgba(0,0,0,.18));
+
+transition:.35s ease;
+
+animation:gifFloat 3s ease-in-out infinite;
+
+}
+
+@keyframes gifFloat{
+
+0%{
+
+transform:translateY(0);
+
+}
+
+50%{
+
+transform:translateY(-10px);
+
+}
+
+100%{
+
+transform:translateY(0);
+
+}
+
+}
+
+
+/* ==========================================
+   BUTTON AREA
+========================================== */
+
+.buttons{
+
+display:flex;
+
+justify-content:center;
+
+align-items:center;
+
+gap:22px;
+
+margin-top:25px;
+
+flex-wrap:wrap;
+
+}
+
+
+/* ==========================================
+   YES BUTTON
+========================================== */
+
+#yes-btn{
+
+background:linear-gradient(
+135deg,
+#ff6fa5,
+#ff92b7
+);
+
+color:white;
+
+border:none;
+
+padding:18px 48px;
+
+font-size:1.45rem;
+
+font-weight:900;
+
+border-radius:18px;
+
+cursor:pointer;
+
+transition:.25s;
+
+box-shadow:
+
+0 8px 25px rgba(255,105,155,.35);
+
+}
+
+#yes-btn:hover{
+
+transform:
+
+translateY(-4px)
+scale(1.05);
+
+box-shadow:
+
+0 15px 35px rgba(255,105,155,.45);
+
+}
+
+
+/* ==========================================
+   NO BUTTON
+========================================== */
+
+#no-btn{
+
+background:rgba(255,255,255,.28);
+
+backdrop-filter:blur(12px);
+
+color:#444;
+
+border:none;
+
+padding:13px 28px;
+
+border-radius:14px;
+
+font-size:1rem;
+
+font-weight:800;
+
+cursor:pointer;
+
+transition:.25s;
+
+box-shadow:
+
+0 5px 18px rgba(0,0,0,.08);
+
+}
+
+#no-btn:hover{
+
+transform:translateY(-3px);
+
+background:rgba(255,255,255,.42);
+
+}
+
+
+/* ==========================================
+   TOAST
+========================================== */
+
+#tease-toast{
+
+margin-top:20px;
+
+min-height:28px;
+
+font-size:1.05rem;
+
+font-weight:700;
+
+color:white;
+
+opacity:0;
+
+transition:.35s;
+
+text-shadow:
+
+0 3px 10px rgba(0,0,0,.15);
+
+}
+
+#tease-toast.show{
+
+opacity:1;
+
+transform:translateY(-3px);
+
+}
+
+
+/* ==========================================
+   MUSIC BUTTON
+========================================== */
+
+#music-toggle{
+
+position:fixed;
+
+bottom:25px;
+
+right:25px;
+
+width:58px;
+
+height:58px;
+
+border-radius:50%;
+
+border:none;
+
+font-size:1.5rem;
+
+cursor:pointer;
+
+background:rgba(255,255,255,.28);
+
+backdrop-filter:blur(12px);
+
+box-shadow:
+
+0 8px 20px rgba(0,0,0,.12);
+
+transition:.3s;
+
+z-index:100;
+
+}
+
+#music-toggle:hover{
+
+transform:
+
+scale(1.12)
+rotate(10deg);
+
+}
+/* ==========================================
+   YES PAGE
+========================================== */
+
+.yes-container{
+
+    position:relative;
+
+    z-index:10;
+
+    width:min(90%,700px);
+
+    text-align:center;
+
+    padding:50px 35px;
+
+    border-radius:35px;
+
+    background:rgba(255,255,255,.12);
+
+    backdrop-filter:blur(18px);
+
+    border:1px solid rgba(255,255,255,.25);
+
+    box-shadow:
+    0 10px 40px rgba(0,0,0,.10);
+
+}
+
+.yes-title{
+
+    font-size:3rem;
+
+    color:white;
+
+    font-weight:900;
+
+    animation:happyBounce 1s ease-in-out infinite alternate;
+
+}
+
+@keyframes happyBounce{
+
+    from{
+        transform:translateY(0);
     }
-    .hearts-bg::after {
-        right: 15px;
-        top: 20px;
-        font-size: 1.1rem;
-        line-height: 2.4;
+
+    to{
+        transform:translateY(-12px);
     }
-    h1 {
-        font-size: 1.8rem;
-    }
-    #yes-btn {
-        padding: 14px 35px;
-        font-size: 1.3rem;
-    }
-    #no-btn {
-        padding: 10px 22px;
-        font-size: 0.9rem;
-    }
+
+}
+
+.yes-message{
+
+    margin-top:20px;
+
+    color:white;
+
+    font-size:1.4rem;
+
+    font-weight:700;
+
+    line-height:1.7;
+
+    text-shadow:0 3px 10px rgba(0,0,0,.15);
+
+}
+
+.yes-container #cat-gif{
+
+    width:280px;
+
+    height:280px;
+
+}
+
+
+/* ==========================================
+   SCROLLBAR
+========================================== */
+
+::-webkit-scrollbar{
+
+    width:8px;
+
+}
+
+::-webkit-scrollbar-thumb{
+
+    background:rgba(255,255,255,.35);
+
+    border-radius:20px;
+
+}
+
+
+/* ==========================================
+   MOBILE
+========================================== */
+
+@media(max-width:768px){
+
+.container{
+
+padding:30px 20px;
+
+width:92%;
+
+}
+
+h1{
+
+font-size:2rem;
+
+}
+
+#cat-gif{
+
+width:180px;
+
+height:180px;
+
+}
+
+.buttons{
+
+flex-direction:column;
+
+gap:15px;
+
+}
+
+#yes-btn{
+
+font-size:1.2rem;
+
+padding:15px 35px;
+
+}
+
+#no-btn{
+
+font-size:.95rem;
+
+padding:12px 24px;
+
+}
+
+.yes-title{
+
+font-size:2.2rem;
+
+}
+
+.yes-message{
+
+font-size:1.1rem;
+
+}
+
+#music-toggle{
+
+width:50px;
+
+height:50px;
+
+font-size:1.3rem;
+
+}
+
+.hearts-bg::before,
+.hearts-bg::after{
+
+font-size:1.4rem;
+
+opacity:.18;
+
+}
+
+}
+
+
+/* ==========================================
+   SMALL PHONES
+========================================== */
+
+@media(max-width:480px){
+
+h1{
+
+font-size:1.6rem;
+
+}
+
+#cat-gif{
+
+width:150px;
+
+height:150px;
+
+}
+
+#yes-btn{
+
+width:100%;
+
+}
+
+#no-btn{
+
+width:100%;
+
+}
+
+.container{
+
+padding:25px 18px;
+
+}
+
+}
+
+
+/* ==========================================
+   FINAL POLISH
+========================================== */
+
+button{
+
+font-family:'Montserrat',sans-serif;
+
+}
+
+img{
+
+user-select:none;
+
+-webkit-user-drag:none;
+
+}
+
+.container,
+.yes-container{
+
+transition:.4s;
+
+}
+
+body{
+
+cursor:default;
+
 }
