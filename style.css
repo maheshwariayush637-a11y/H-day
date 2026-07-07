@@ -31,12 +31,11 @@ body{
     position:relative;
 
     background:linear-gradient(
-        -45deg,
-        #ffd6ea,
-        #f7c8ff,
-        #d7d5ff,
-        #bde9ff,
-        #ffd6ea
+        135deg,
+        #ff9fd6 0%,
+        #d89dff 35%,
+        #a3b8ff 65%,
+        #8fd4ff 100%
     );
 
     background-size:500% 500%;
