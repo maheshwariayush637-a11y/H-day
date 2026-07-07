@@ -5,14 +5,33 @@
 }
 
 body {
-    font-family: 'Nunito', sans-serif;
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
-    background: linear-gradient(to right, #fbc2eb, #a6c1ee); /* dreamy pink-blue */
-    position: relative;
+  font-family: 'Montserrat', sans-serif;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  background: linear-gradient(to right, #fbc2eb, #a6c1ee); /* dreamy pink-blue */
+  overflow: hidden;
+}
+
+/* Broken light shimmer (bokeh effect) */
+body::after {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background-image: radial-gradient(circle at 20% 30%, rgba(255,255,255,0.3) 0%, transparent 40%),
+                    radial-gradient(circle at 80% 70%, rgba(255,255,255,0.25) 0%, transparent 40%),
+                    radial-gradient(circle at 50% 80%, rgba(255,255,255,0.2) 0%, transparent 50%);
+  mix-blend-mode: screen;
+  pointer-events: none;
+  animation: shimmer 12s linear infinite;
+}
+
+/* Animation for moving shimmer */
+@keyframes shimmer {
+  from { background-position: 0 0; }
+  to { background-position: 100px 100px; }
 }
 
 /* Broken light overlay */
