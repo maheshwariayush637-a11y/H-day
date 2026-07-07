@@ -9,16 +9,10 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="hearts-bg"></div>
-    <div class="shooting-stars">
-    <span class="shooting-star"></span>
-    <span class="shooting-star"></span>
-    <span class="shooting-star"></span>
-    <span class="shooting-star"></span>
-    <span class="shooting-star"></span>
-</div>
+   <div class="hearts-bg"></div>
 
-    <div class="container">
+   <div id="shooting-stars"></div>
+   <div class="container">
         <h1>Will you be my Anchor [Best Friend]</h1>
 
         <div class="gif-container">
@@ -41,3 +35,44 @@
     <script src="script.js"></script>
 </body>
 </html>
+/* ===========================
+   RANDOM SHOOTING STARS
+=========================== */
+
+const shootingStars = document.getElementById("shooting-stars");
+
+function createShootingStar(){
+
+    const star = document.createElement("div");
+
+    star.className = "shooting-star";
+
+    star.style.width = (Math.random()*120 + 120) + "px";
+
+    star.style.left = "-250px";
+
+    star.style.top = Math.random()*window.innerHeight + "px";
+
+    shootingStars.appendChild(star);
+
+    const duration = Math.random()*1200 + 1800;
+
+    requestAnimationFrame(()=>{
+
+        star.style.transition = `transform ${duration}ms linear, opacity 300ms`;
+
+        star.style.opacity = "1";
+
+        star.style.transform = `translate(${window.innerWidth+400}px,500px) rotate(-35deg)`;
+
+    });
+
+    setTimeout(()=>{
+
+        star.remove();
+
+    },duration);
+
+}
+
+setInterval(createShootingStar,1500);
