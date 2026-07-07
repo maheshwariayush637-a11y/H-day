@@ -30,18 +30,17 @@ body{
 
     position:relative;
 
-    background:linear-gradient(
-        135deg,
-        #ff9fd6 0%,
-        #d89dff 35%,
-        #a3b8ff 65%,
-        #8fd4ff 100%
-    );
+background:linear-gradient(
+    135deg,
+    #ff9fd6 0%,
+    #d89dff 35%,
+    #a3b8ff 65%,
+    #8fd4ff 100%
+);
 
-    background-size:500% 500%;
+background-size:180% 180%;
 
-    animation:gradientFlow 20s ease infinite;
-
+animation:gradientFlow 20s ease infinite;
 }
 
 /* =========================
