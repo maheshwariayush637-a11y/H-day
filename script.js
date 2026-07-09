@@ -29,16 +29,16 @@ const yesTeasePokes = [
 ]
  
 let yesTeasedCount = 0
- 
+
 let noClickCount = 0
 let runawayEnabled = false
 let musicPlaying = true
- 
+
 const catGif = document.getElementById('cat-gif')
 const yesBtn = document.getElementById('yes-btn')
 const noBtn = document.getElementById('no-btn')
 const music = document.getElementById('bg-music')
- 
+
 // Autoplay: audio starts muted (bypasses browser policy), unmute immediately
 music.muted = true
 music.volume = 0.3
@@ -51,7 +51,7 @@ music.play().then(() => {
         music.play().catch(() => {})
     }, { once: true })
 })
- 
+
 function toggleMusic() {
     if (musicPlaying) {
         music.pause()
@@ -64,7 +64,7 @@ function toggleMusic() {
         document.getElementById('music-toggle').textContent = '🔊'
     }
 }
- 
+
 function handleYesClick() {
     if (!runawayEnabled) {
         // Tease her to try No first
@@ -75,7 +75,7 @@ function handleYesClick() {
     }
     window.location.href = 'yes.html'
 }
- 
+
 function showTeaseMessage(msg) {
     let toast = document.getElementById('tease-toast')
     toast.textContent = msg
@@ -83,38 +83,38 @@ function showTeaseMessage(msg) {
     clearTimeout(toast._timer)
     toast._timer = setTimeout(() => toast.classList.remove('show'), 2500)
 }
- 
+
 function handleNoClick() {
     noClickCount++
- 
+
     // Cycle through guilt-trip messages
     const msgIndex = Math.min(noClickCount, noMessages.length - 1)
     noBtn.textContent = noMessages[msgIndex]
- 
+
     // Grow the Yes button bigger each time
     const currentSize = parseFloat(window.getComputedStyle(yesBtn).fontSize)
     yesBtn.style.fontSize = `${currentSize * 1.35}px`
     const padY = Math.min(18 + noClickCount * 5, 60)
     const padX = Math.min(45 + noClickCount * 10, 120)
     yesBtn.style.padding = `${padY}px ${padX}px`
- 
+
     // Shrink No button to contrast
     if (noClickCount >= 2) {
         const noSize = parseFloat(window.getComputedStyle(noBtn).fontSize)
         noBtn.style.fontSize = `${Math.max(noSize * 0.85, 10)}px`
     }
- 
+
     // Swap cat GIF through stages
     const gifIndex = Math.min(noClickCount, gifStages.length - 1)
     swapGif(gifStages[gifIndex])
- 
+
     // Runaway starts at click 5
     if (noClickCount >= 5 && !runawayEnabled) {
         enableRunaway()
         runawayEnabled = true
     }
 }
- 
+
 function swapGif(src) {
     catGif.style.opacity = '0'
     setTimeout(() => {
@@ -122,78 +122,24 @@ function swapGif(src) {
         catGif.style.opacity = '1'
     }, 200)
 }
- 
+
 function enableRunaway() {
     noBtn.addEventListener('mouseover', runAway)
     noBtn.addEventListener('touchstart', runAway, { passive: true })
 }
- 
+
 function runAway() {
     const margin = 20
     const btnW = noBtn.offsetWidth
     const btnH = noBtn.offsetHeight
     const maxX = window.innerWidth - btnW - margin
     const maxY = window.innerHeight - btnH - margin
- 
+
     const randomX = Math.random() * maxX + margin / 2
     const randomY = Math.random() * maxY + margin / 2
- 
+
     noBtn.style.position = 'fixed'
     noBtn.style.left = `${randomX}px`
     noBtn.style.top = `${randomY}px`
     noBtn.style.zIndex = '50'
 }
- 
-/* ===========================
-   RANDOM SHOOTING STARS
-   (slowed down for a dreamy, slow-motion feel)
-=========================== */
- 
-const shootingStars = document.getElementById("shooting-stars");
- 
-function createShootingStar() {
- 
-    if (!shootingStars) return;
- 
-    const star = document.createElement("div");
- 
-    star.className = "shooting-star";
- 
-    star.style.width = (Math.random() * 120 + 120) + "px";
- 
-    star.style.left = "-250px";
- 
-    star.style.top = (Math.random() * window.innerHeight) + "px";
- 
-    shootingStars.appendChild(star);
- 
-    const duration = Math.random() * 3000 + 4000;
- 
-    star.animate(
-        [
-            {
-                transform: "translate(0px,0px) rotate(-35deg)",
-                opacity: 0
-            },
-            {
-                opacity: 1,
-                offset: 0.1
-            },
-            {
-                transform: `translate(${window.innerWidth + 500}px,600px) rotate(-35deg)`,
-                opacity: 0
-            }
-        ],
-        {
-            duration: duration,
-            easing: "linear"
-        }
-    );
- 
-    setTimeout(() => {
-        star.remove();
-    }, duration);
- 
-}
- 
-setInterval(createShootingStar, 900);
