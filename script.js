@@ -220,3 +220,8 @@ function showFunnyAd(){
 
     overlay.style.display = "block";
 }
+
+function closeFunnyAd() {
+    const overlay = document.getElementById("funny-ad-overlay");
+    overlay.style.display = "none";
+}
