@@ -204,12 +204,15 @@ function showFunnyAd(){
 
     content.innerText = funnyAds[Math.floor(Math.random() * funnyAds.length)];
 
+    const adWidth = 300;
+    const adHeight = 380;
+
     const positions = [
-        { top: 20, left: 20 }, // Top Left
-        { top: 20, left: window.innerWidth - 340 }, // Top Right
-        { top: window.innerHeight - 240, left: 20 }, // Bottom Left
-        { top: window.innerHeight - 240, left: window.innerWidth - 340 } // Bottom Right
-    ];
+    { top: 20, left: 20 }, // Top Left
+    { top: 20, left: window.innerWidth - adWidth - 20 }, // Top Right
+    { top: window.innerHeight - adHeight - 20, left: 20 }, // Bottom Left
+    { top: window.innerHeight - adHeight - 20, left: window.innerWidth - adWidth - 20 } // Bottom Right
+];
 
     const pos = positions[Math.floor(Math.random() * positions.length)];
 
