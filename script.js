@@ -133,3 +133,101 @@ function runAway() {
   noBtn.style.top = `${randomY}px`
   noBtn.style.zIndex = '50'
 }
+// ==========================
+// Funny Ads
+// ==========================
+
+const funnyAds = [
+
+`🤓 Fun Fact
+
+Pata hai bina haldi ka milk
+sehat ke liye kharab kyu hota hai?
+
+...
+
+Kyuki woh
+UN-HALDI hota hai. 🥹`,
+
+`🦆 Duck Fact #27
+
+A duck has never
+used this website.
+
+Now you know.`,
+
+`📊 Important Survey
+
+Who is the most
+beautiful, hot & gorgeous?
+
+○ Allie (Off Campus)
+○ Ana de Armas
+○ Emma Watson
+○ Ayush (WTF... what am I doing in the girls list? 😭)
+
+BTW, thank you for choosing me.
+Huihuihui 🐣`,
+
+`Please Wait...
+
+Thinking of a good joke...
+
+████░░░░░ 40%
+
+Still thinking...
+
+██████████ 100%
+
+Mujhe joke yaad hi
+nahi aa raha... 😭`,
+
+`🚨 Breaking News
+
+An animal has clicked
+this button.
+
+Authorities are still
+investigating.
+
+Please remain calm.`,
+
+`⚠️ Warning!
+
+Too much awesomeness
+detected.
+
+Please reduce
+being cool.
+
+System Error.`,
+
+`Knock Knock!
+
+Who's there?
+
+Tank.
+
+Tank who?
+
+You're welcome. 😎
+
+(I never said it
+would be funny.)`
+
+];
+
+function showFunnyAd(){
+
+    const overlay=document.getElementById("funny-ad-overlay");
+    const content=document.getElementById("ad-content");
+
+    content.innerText=funnyAds[Math.floor(Math.random()*funnyAds.length)];
+
+    overlay.style.display="flex";
+}
+
+function closeFunnyAd(){
+
+    document.getElementById("funny-ad-overlay").style.display="none";
+}
