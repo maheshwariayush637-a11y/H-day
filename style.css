@@ -218,3 +218,60 @@ h1 {
   width: 260px;
   height: 260px;
 }
+/* =======================
+   Funny Ads Popup
+======================= */
+
+.ad-overlay{
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.55);
+    display:none;
+    justify-content:center;
+    align-items:center;
+    z-index:9999;
+    animation:fadeIn .2s ease;
+}
+
+.ad-box{
+    background:#fff;
+    width:90%;
+    max-width:420px;
+    border-radius:18px;
+    padding:20px;
+    text-align:center;
+    box-shadow:0 15px 40px rgba(0,0,0,.25);
+}
+
+.ad-header{
+    font-size:20px;
+    font-weight:bold;
+    margin-bottom:15px;
+}
+
+.ad-content{
+    white-space:pre-line;
+    font-size:17px;
+    line-height:1.6;
+}
+
+.ad-btn{
+    margin-top:20px;
+    background:#ff5b8a;
+    color:white;
+    border:none;
+    padding:12px 30px;
+    border-radius:12px;
+    cursor:pointer;
+    font-size:16px;
+    transition:.2s;
+}
+
+.ad-btn:hover{
+    transform:scale(1.05);
+}
+
+@keyframes fadeIn{
+    from{opacity:0;}
+    to{opacity:1;}
+}
