@@ -204,7 +204,7 @@ function showFunnyAd(){
 
     content.innerText=funnyAds[Math.floor(Math.random()*funnyAds.length)];
 
-    overlay.style.display="flex";
+    overlay.style.display="block";
 }
 
 function closeFunnyAd(){
