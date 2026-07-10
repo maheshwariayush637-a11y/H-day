@@ -225,8 +225,3 @@ function closeFunnyAd() {
     const overlay = document.getElementById("funny-ad-overlay");
     overlay.style.display = "none";
 }
-
-function closeFunnyAd() {
-    alert("Button clicked!");   // Testing
-    document.getElementById("funny-ad-overlay").style.display = "none";
-}
