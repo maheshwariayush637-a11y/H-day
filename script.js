@@ -62,6 +62,9 @@ function toggleMusic() {
 }
 
 function handleYesClick() {
+
+  showFunnyAd();
+
   if (!runawayEnabled) {
     const msg = yesTeasePokes[Math.min(yesTeasedCount, yesTeasePokes.length - 1)]
     yesTeasedCount++
@@ -80,6 +83,9 @@ function showTeaseMessage(msg) {
 }
 
 function handleNoClick() {
+
+  showFunnyAd();
+
   noClickCount++
 
   const msgIndex = Math.min(noClickCount, noMessages.length - 1)
