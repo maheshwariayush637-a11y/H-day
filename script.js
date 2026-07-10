@@ -152,13 +152,6 @@ sehat ke liye kharab kyu hota hai?
 Kyuki woh
 UN-HALDI hota hai. 🥹`,
 
-`🦆 Duck Fact #27
-
-A duck has never
-used this website.
-
-Now you know.`,
-
 `📊 Important Survey
 
 Who is the most
@@ -171,19 +164,6 @@ beautiful, hot & gorgeous?
 
 BTW, thank you for choosing me.
 Huihuihui 🐣`,
-
-`Please Wait...
-
-Thinking of a good joke...
-
-████░░░░░ 40%
-
-Still thinking...
-
-██████████ 100%
-
-Mujhe joke yaad hi
-nahi aa raha... 😭`,
 
 `🚨 Breaking News
 
@@ -214,9 +194,6 @@ Tank.
 Tank who?
 
 You're welcome. 😎
-
-(I never said it
-would be funny.)`
 
 ];
 
