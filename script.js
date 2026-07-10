@@ -199,15 +199,24 @@ You're welcome. 😎`
 
 function showFunnyAd(){
 
-    const overlay=document.getElementById("funny-ad-overlay");
-    const content=document.getElementById("ad-content");
+    const overlay = document.getElementById("funny-ad-overlay");
+    const content = document.getElementById("ad-content");
 
-    content.innerText=funnyAds[Math.floor(Math.random()*funnyAds.length)];
+    content.innerText = funnyAds[Math.floor(Math.random() * funnyAds.length)];
 
-    overlay.style.display="block";
-}
+    const positions = [
+        { top: 20, left: 20 }, // Top Left
+        { top: 20, left: window.innerWidth - 340 }, // Top Right
+        { top: window.innerHeight - 240, left: 20 }, // Bottom Left
+        { top: window.innerHeight - 240, left: window.innerWidth - 340 } // Bottom Right
+    ];
 
-function closeFunnyAd(){
+    const pos = positions[Math.floor(Math.random() * positions.length)];
 
-    document.getElementById("funny-ad-overlay").style.display="none";
+    overlay.style.left = pos.left + "px";
+    overlay.style.top = pos.top + "px";
+    overlay.style.right = "auto";
+    overlay.style.bottom = "auto";
+
+    overlay.style.display = "block";
 }
