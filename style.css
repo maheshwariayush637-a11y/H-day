@@ -218,6 +218,14 @@ h1 {
   width: 260px;
   height: 260px;
 }
+.yes-subtitle {
+  font-size: 1.25rem;
+  color: #264653;
+  font-weight: 700;
+  margin: 4px 0;
+  line-height: 1.5;
+  display: block;
+}
 /* =======================
    Funny Ads Popup
 ======================= */
