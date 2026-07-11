@@ -63,7 +63,7 @@ body {
 .birthday-badge {
   display: inline-block;
   background: linear-gradient(135deg, #F4A261, #E9C46A);
-  color: #264653;
+  color: #2c3e50;
   font-weight: 800;
   font-size: 0.95rem;
   padding: 8px 20px;
